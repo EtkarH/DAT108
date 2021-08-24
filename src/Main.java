@@ -25,7 +25,7 @@ public class Main {
             public void run() {
 
                     while(tekst.isQuit()){
-                        tekst.setString(JOptionPane.showInputDialog("test"));
+                        tekst.setString(JOptionPane.showInputDialog("Skriv noe her: "));
                         if(tekst.getString().equalsIgnoreCase("quit")){
                             tekst.setQuit(false);
                         }
