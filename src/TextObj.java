@@ -12,7 +12,13 @@ public class TextObj {
     }
 
     public void setString(String string) {
-        this.string = string;
+        if (string.equalsIgnoreCase("quit")){
+            this.string = string;
+            isQuit = false;
+        } else {
+            this.string = string;
+        }
+
     }
 
     public boolean isQuit() {
@@ -22,4 +28,9 @@ public class TextObj {
     public void setQuit(boolean quit) {
         isQuit = quit;
     }
+
+    public boolean checkQuit(){
+        return !this.string.equalsIgnoreCase("quit");
+    }
+
 }
