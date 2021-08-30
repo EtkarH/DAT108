@@ -16,6 +16,6 @@ public class Burger {
 
     @Override
     public String toString(){
-        return "[" + BurgerId + "]";
+        return "◖" + BurgerId + "◗";
     }
 }

@@ -9,26 +9,30 @@ public class Cook extends Thread{
 
     @Override
     public void run(){
-        synchronized (brett){
-        while(true){
 
+        while(true){
                 try {
-                    if (brett.isFull()){
-                        System.out.println("Brett full!");
-                        wait();
-                    } else {
-                        brett.addBurger(new Burger(brett.getBurgerCount()));
-                        System.out.println(brett.toString());
-                        notifyAll();
+                    Thread.sleep(getRandomNumber(2000,6000));
+                    synchronized (brett) {
+                        if (brett.isFull()) {
+                            System.out.println(this.getName() + " (cook) tried to put out a burger, but the counter is full! Waiting for burgers to be served.");
+                            brett.wait();
+                            Thread.sleep(getRandomNumber(2000,6000));
+                        } else {
+                            Burger burger = new Burger(brett.getBurgerCount());
+                            brett.addBurger(burger);
+                            System.out.println(this.getName() + " (cook) just made burger " + burger.toString() + ". " + brett.toString());
+                            brett.notifyAll();
+                        }
+
                     }
-                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
             }
 
-        }
+
 
     }
 

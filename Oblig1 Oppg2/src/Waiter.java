@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Waiter extends Thread{
 
     private Brett brett;
@@ -9,28 +11,29 @@ public class Waiter extends Thread{
 
     @Override
     public void run(){
-        synchronized (brett){
+
         while(true){
-
-
-
                 try {
-                    if (brett.isEmpty()){
-                        System.out.println("Brett empty!");
-                        wait();
-                    } else {
-                        brett.getBurger();
-                        System.out.println(brett.toString());
-                        notifyAll();
+                    Thread.sleep(getRandomNumber(2000,6000));
+                    synchronized (brett) {
+                        if (brett.isEmpty()) {
+                            System.out.println(this.getName() + " (waiter) tried serving a  burger, but the counter is empty. Waiting for more burgers to be made.");
+                            brett.wait();
+                            Thread.sleep(getRandomNumber(2000,6000));
+                        } else {
+                            Burger burger = brett.getBurger();
+                            System.out.println(this.getName() + " (waiter) just served burger " + burger.toString() + ". " + brett.toString());
+                            brett.notifyAll();
+                        }
+
                     }
-                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
             }
 
-        }
+
 
     }
 

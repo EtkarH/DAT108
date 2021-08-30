@@ -3,18 +3,20 @@ import java.util.Queue;
 
 public class Brett {
 
-    private Queue<Burger> burgerBrett = new LinkedList<>();
+    private Queue<Burger> burgerBrett;
     private int maxCap;
     private int burgerCount;
 
     public Brett(int max){
+        burgerBrett = new LinkedList<Burger>();
         this.maxCap = max;
         burgerCount = 1;
 
     }
 
     public void addBurger(Burger burger){
-        if (burgerBrett.size() < maxCap) {
+        if (burgerBrett.size() < maxCap || burgerBrett == null) {
+
             burgerBrett.add(burger);
             burgerCount++;
         }
@@ -38,13 +40,7 @@ public class Brett {
 
     @Override
     public String toString(){
-        String string = "Brett: [";
-
-        while (burgerBrett.iterator().hasNext()){
-            string += burgerBrett.iterator().next().toString() + "' ";
-        }
-        string += "]";
-        return string;
+        return "Counter: " + burgerBrett.toString();
     }
 
 }
