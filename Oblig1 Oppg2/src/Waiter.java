@@ -17,7 +17,7 @@ public class Waiter extends Thread{
                     Thread.sleep(getRandomNumber(2000,6000));
                     synchronized (brett) {
                         if (brett.isEmpty()) {
-                            System.out.println(this.getName() + " (waiter) tried serving a  burger, but the counter is empty. Waiting for more burgers to be made.");
+                            System.out.println(this.getName() + " (waiter) tried serving a burger, but the counter is empty. Waiting for more burgers to be made.");
                             brett.wait();
                             Thread.sleep(getRandomNumber(2000,6000));
                         } else {
