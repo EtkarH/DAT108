@@ -17,16 +17,16 @@ public class Brett {
 
     }
 
-    public void addBurger(Burger burger){
+    public void addBurger(Burger burger) throws InterruptedException {
         if (burgerBrett.size() < maxCap || burgerBrett == null) {
 
-            burgerBrett.add(burger);
+            burgerBrett.put(burger);
             burgerCount++;
         }
     }
 
-    public Burger getBurger(){
-        return burgerBrett.poll();
+    public Burger getBurger() throws InterruptedException {
+        return burgerBrett.take();
     }
 
     public boolean isEmpty(){

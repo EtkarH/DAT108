@@ -2,14 +2,18 @@ public class HamMain {
 
     public static void main (String[] args){
 
-        Brett brett = new Brett(5);
-        Cook cook1 = new Cook("Etkar", brett);
-        Cook cook2 = new Cook("AM", brett);
-        Waiter waiter1 = new Waiter("Adrian", brett);
+        final String[] kokker = {"Anne", "Erik", "Knut"};
+        final String[] servitorer = {"Mia", "Per"};
+        final int KAPASITET = 4;
 
-        cook1.start();
-        waiter1.start();
-        cook2.start();
+        Brett brett = new Brett(KAPASITET);
+        for (String navn : kokker) {
+            new Cook(navn, brett).start();
+        }
+        for (String navn : servitorer) {
+            new Waiter(navn, brett).start();
+        }
+
 
 
     }
