@@ -15,9 +15,11 @@ public class KongeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int aar = Integer.parseInt(request.getParameter("aar"));
+        String res = request.getParameter("aar");
+
         List<Konge> konger = new Konger().getNorske();
-        Konge konge = konger.stream().filter(a -> a.getKongeFraAar() <= aar && a.getKongeTilAar() > aar).collect(Collectors.toList()).get(0);
+
+
         response.setContentType("text/html; charset=ISO-8859-1");
 
         // Hello
@@ -30,8 +32,22 @@ public class KongeServlet extends HttpServlet {
         out.println("<title>Konge</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<img src=\""+ konge.getBilde() + "\" width=\"400\" height=\"500\">");
-        out.println("<h1>" + "Konge i år "+ aar + " var " + konge.getNavn() + ", født " + konge.getFodtAar() + ", konge fra " + konge.getKongeFraAar() + " til " + konge.getKongeTilAar() + "</h1>");
+        if (res.matches("^\\d{4}$") || res != null){
+            int aar = Integer.parseInt(res);
+            if (aar == 1987){
+                out.println("<iframe width=\"1600\" height=\"900\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ?&autoplay=1\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+            } else if (aar < 1448 || aar >= 1588) {
+                out.println("<h1>Kongen for dette året er ikke registrert.</h1>");
+            }
+            else {
+                Konge konge = konger.stream().filter(a -> a.getKongeFraAar() <= aar && a.getKongeTilAar() > aar).collect(Collectors.toList()).get(0);
+                out.println("<img src=\""+ konge.getBilde() + "\" width=\"400\" height=\"500\">");
+                out.println("<h1>" + "Konge i år "+ aar + " var " + konge.getNavn() + ", født " + konge.getFodtAar() + ", konge fra " + konge.getKongeFraAar() + " til " + konge.getKongeTilAar() + "</h1>");
+            }
+        } else {
+            out.println("<h1>Nah</h1>");
+        }
+
         out.println("</body>");
         out.println("</html>");
     }
