@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Frivillig1/Frivillig1.iml" filepath="$PROJECT_DIR$/../Frivillig1/Frivillig1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Frivillig2/Frivillig2.iml" filepath="$PROJECT_DIR$/../Frivillig2/Frivillig2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Oblig4Konger.iml" filepath="$PROJECT_DIR$/Oblig4Konger.iml" />
     </modules>
   </component>
