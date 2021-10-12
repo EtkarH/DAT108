@@ -9,6 +9,7 @@ public class HalloServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
+        String s = request.getParameter("navn");
 
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>");
@@ -18,7 +19,7 @@ public class HalloServlet extends HttpServlet {
         out.println("<title>Temp results</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>Hei, " + request.getParameter("navn") + "!</h1>");
+        out.println("<h1>Hei, " + s + "!</h1>");
         out.println("</body>");
         out.println("</html>");
 
