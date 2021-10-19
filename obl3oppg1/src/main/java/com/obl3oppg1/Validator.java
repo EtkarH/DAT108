@@ -19,6 +19,6 @@ public class Validator {
         if (username == null) {
             return false;
         }
-        return username.matches("^[a-zA-Z0-9_.-]*$");
+        return username.matches("^[a-zA-Z0-9_.-]$");
     }
 }

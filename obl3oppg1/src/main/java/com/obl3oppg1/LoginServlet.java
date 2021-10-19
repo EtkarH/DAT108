@@ -16,10 +16,12 @@ public class LoginServlet extends HttpServlet {
         HttpSession sesjon = request.getSession(false);
 
         if (sesjon != null && sesjon.getAttribute("username") != null){
-            if (sesjon.getAttribute("username").toString().equalsIgnoreCase("admin")){
+            if (sesjon != null && !sesjon.getAttribute("username").toString().equalsIgnoreCase("admin")){
+                message = "<p style=\"color:red\">Passordet du ga inn var feil. Prøv igjen: </p>";
+            } else if (sesjon.getAttribute("username").toString().equalsIgnoreCase("admin")){
                 response.sendRedirect("handle");
             } else {
-                message = "<p style=\"color:red\">Passordet du ga inn var feil. Prøv igjen: </p>";
+                message = "<p>Skriv inn passord: </p>";
             }
         }
 
